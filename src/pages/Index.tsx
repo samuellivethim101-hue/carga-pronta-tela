@@ -79,7 +79,7 @@ const Index = () => {
                     <CalendarIcon className="h-3.5 w-3.5" />
                   </span>
                   <div className="flex flex-col items-start gap-0.5">
-                    <span className="text-muted-foreground text-[10px] font-semibold uppercase tracking-widest leading-none">Data</span>
+                    <span className="text-muted-foreground text-[10px] font-semibold uppercase tracking-widest leading-none">Período</span>
                     <span className="font-bold text-card-foreground text-sm leading-none">
                       {date ? format(date, "dd/MM", { locale: ptBR }) : "Hoje"}
                     </span>
