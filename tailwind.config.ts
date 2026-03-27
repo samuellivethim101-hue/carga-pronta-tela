@@ -39,6 +39,14 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        filter: {
+          DEFAULT: "hsl(var(--filter-bg))",
+          hover: "hsl(var(--filter-hover))",
+        },
+        badge: {
+          DEFAULT: "hsl(var(--badge-bg))",
+          text: "hsl(var(--badge-text))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
