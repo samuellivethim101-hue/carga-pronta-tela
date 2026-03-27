@@ -18,7 +18,8 @@ const mockCargas = [
 ];
 
 const Index = () => {
-  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [dateFrom, setDateFrom] = useState<Date | undefined>(new Date());
+  const [dateTo, setDateTo] = useState<Date | undefined>(new Date());
 
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
