@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, MapPin, Compass, Truck, Zap } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -21,45 +21,99 @@ const Index = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-2xl px-4 py-6">
-        {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          <FilterChip label="Origem" value="SP" active />
-          <FilterChip label="Destino" value="RS" active />
-          <FilterChip label="Veículo" value="Carreta" />
-          
-          <Popover>
-            <PopoverTrigger asChild>
-              <button className="flex items-center gap-2 rounded-full bg-card border border-border px-4 py-2.5 text-sm transition-all hover:shadow-md hover:border-primary/30 focus:outline-none focus:ring-2 focus:ring-ring/20">
-                <CalendarIcon className="h-3.5 w-3.5 text-muted-foreground" />
-                <span className="text-muted-foreground text-xs font-medium uppercase tracking-wide">Data</span>
-                <span className="font-semibold text-card-foreground">
-                  {date ? format(date, "dd/MM", { locale: ptBR }) : "Hoje"}
-                </span>
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="start">
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                initialFocus
-                className={cn("p-3 pointer-events-auto")}
-              />
-            </PopoverContent>
-          </Popover>
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      {/* Atmospheric background elements */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/[0.04] blur-3xl" />
+        <div className="absolute top-1/3 -left-40 h-[400px] w-[400px] rounded-full bg-accent/[0.03] blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-primary/[0.02] blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-2xl px-4 py-8 sm:py-10">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2.5 mb-2">
+            <div className="flex items-center justify-center h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-primary/80 shadow-md">
+              <Zap className="h-4.5 w-4.5 text-primary-foreground" />
+            </div>
+            <h1 className="text-xl font-extrabold tracking-tight text-foreground">
+              FreightFlow
+            </h1>
+          </div>
+          <p className="text-sm text-muted-foreground font-medium pl-[46px]">
+            Cargas disponíveis em tempo real
+          </p>
+        </div>
+
+        {/* Filter bar */}
+        <div className="glass-surface rounded-3xl p-3 premium-shadow mb-8">
+          <div className="flex flex-wrap gap-2.5">
+            <FilterChip
+              label="Origem"
+              value="SP"
+              active
+              icon={<MapPin className="h-3.5 w-3.5" />}
+            />
+            <FilterChip
+              label="Destino"
+              value="RS"
+              active
+              icon={<Compass className="h-3.5 w-3.5" />}
+            />
+            <FilterChip
+              label="Veículo"
+              value="Carreta"
+              icon={<Truck className="h-3.5 w-3.5" />}
+            />
+
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className={cn(
+                  "group relative flex items-center gap-2.5 rounded-2xl bg-card border border-border/60 px-4 py-3 text-sm",
+                  "transition-all duration-300 ease-out",
+                  "hover:premium-shadow hover:border-primary/25 hover:-translate-y-0.5",
+                  "focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30",
+                  "active:translate-y-0 active:shadow-sm"
+                )}>
+                  <span className="flex items-center justify-center h-7 w-7 rounded-xl bg-badge text-primary transition-colors duration-200 group-hover:bg-primary/15">
+                    <CalendarIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <div className="flex flex-col items-start gap-0.5">
+                    <span className="text-muted-foreground text-[10px] font-semibold uppercase tracking-widest leading-none">Data</span>
+                    <span className="font-bold text-card-foreground text-sm leading-none">
+                      {date ? format(date, "dd/MM", { locale: ptBR }) : "Hoje"}
+                    </span>
+                  </div>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0 rounded-2xl border-border/40 premium-shadow" align="start">
+                <Calendar
+                  mode="single"
+                  selected={date}
+                  onSelect={setDate}
+                  initialFocus
+                  className={cn("p-3 pointer-events-auto")}
+                />
+              </PopoverContent>
+            </Popover>
+          </div>
         </div>
 
         {/* Section title */}
-        <h1 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
-          Cargas disponíveis ({mockCargas.length})
-        </h1>
+        <div className="flex items-center gap-3 mb-6">
+          <h2 className="text-xs font-extrabold uppercase tracking-[0.2em] text-muted-foreground">
+            Cargas disponíveis
+          </h2>
+          <span className="inline-flex items-center justify-center h-6 min-w-[28px] px-2 rounded-lg bg-primary/10 text-primary text-xs font-extrabold">
+            {mockCargas.length}
+          </span>
+          <div className="flex-1 h-px bg-gradient-to-r from-border/60 to-transparent" />
+        </div>
 
         {/* Cards */}
-        <div className="space-y-4">
-          {mockCargas.map((carga) => (
-            <LoadCard key={carga.id} {...carga} />
+        <div className="space-y-5">
+          {mockCargas.map((carga, i) => (
+            <LoadCard key={carga.id} {...carga} index={i} />
           ))}
         </div>
       </div>
