@@ -47,8 +47,8 @@ const Index = () => {
         </div>
 
         {/* Filter bar */}
-        <div className="glass-surface rounded-3xl p-3 premium-shadow mb-8">
-          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar">
+        <div className="glass-surface rounded-2xl sm:rounded-3xl p-2.5 sm:p-3 premium-shadow mb-6 sm:mb-8">
+          <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-2.5">
             <FilterChip
               label="Origem"
               value="SP"
@@ -70,7 +70,7 @@ const Index = () => {
             <Popover>
               <PopoverTrigger asChild>
                 <button className={cn(
-                  "group relative flex items-center gap-2.5 rounded-2xl bg-card border border-border/60 px-4 py-3 text-sm",
+                  "group relative flex items-center gap-2 sm:gap-2.5 rounded-xl sm:rounded-2xl bg-card border border-border/60 px-3 sm:px-4 py-2.5 sm:py-3 text-sm",
                   "transition-all duration-300 ease-out",
                   "hover:premium-shadow hover:border-primary/25 hover:-translate-y-0.5",
                   "focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30",
@@ -81,7 +81,7 @@ const Index = () => {
                   </span>
                   <div className="flex flex-col items-start gap-0.5">
                     <span className="text-muted-foreground text-[10px] font-semibold uppercase tracking-widest leading-none">Período</span>
-                    <span className="font-bold text-card-foreground text-sm leading-none">
+                    <span className="font-bold text-card-foreground text-xs sm:text-sm leading-none">
                       {dateFrom ? format(dateFrom, "dd/MM", { locale: ptBR }) : "Início"}
                       {" — "}
                       {dateTo ? format(dateTo, "dd/MM", { locale: ptBR }) : "Fim"}
@@ -89,25 +89,25 @@ const Index = () => {
                   </div>
                 </button>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0 rounded-2xl border-border/40 premium-shadow" align="start">
+              <PopoverContent className="w-auto p-0 rounded-2xl border-border/40 premium-shadow" align="start" side="bottom">
                 <div className="flex flex-col sm:flex-row">
-                  <div className="p-3 border-b sm:border-b-0 sm:border-r border-border/40">
+                  <div className="p-2.5 sm:p-3 border-b sm:border-b-0 sm:border-r border-border/40">
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">Início</p>
                     <Calendar
                       mode="single"
                       selected={dateFrom}
                       onSelect={setDateFrom}
                       initialFocus
-                      className={cn("p-2 pointer-events-auto")}
+                      className={cn("p-1.5 sm:p-2 pointer-events-auto")}
                     />
                   </div>
-                  <div className="p-3">
+                  <div className="p-2.5 sm:p-3">
                     <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1 px-1">Fim</p>
                     <Calendar
                       mode="single"
                       selected={dateTo}
                       onSelect={setDateTo}
-                      className={cn("p-2 pointer-events-auto")}
+                      className={cn("p-1.5 sm:p-2 pointer-events-auto")}
                     />
                   </div>
                 </div>
