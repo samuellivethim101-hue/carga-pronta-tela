@@ -48,7 +48,7 @@ const Index = () => {
 
         {/* Filter bar */}
         <div className="glass-surface rounded-3xl p-3 premium-shadow mb-8">
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar">
             <FilterChip
               label="Origem"
               value="SP"
