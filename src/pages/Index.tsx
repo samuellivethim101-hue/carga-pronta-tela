@@ -22,12 +22,33 @@ const Index = () => {
   const [dateTo, setDateTo] = useState<Date | undefined>(new Date());
 
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden">
+    <div className="relative min-h-screen bg-background overflow-x-hidden">
       {/* Atmospheric background elements */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/[0.04] blur-3xl" />
         <div className="absolute top-1/3 -left-40 h-[400px] w-[400px] rounded-full bg-accent/[0.03] blur-3xl" />
         <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-primary/[0.02] blur-3xl" />
+      </div>
+
+      {/* Sticky floating bar: Origem + Destino */}
+      <div className="sticky top-0 z-50">
+        <div className="glass-surface border-b border-border/40 px-3 sm:px-4 py-2.5 backdrop-blur-xl bg-background/80">
+          <div className="mx-auto max-w-2xl flex items-center justify-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <div className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-card" />
+              <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">SP</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <div className="w-6 sm:w-10 h-[2px] bg-gradient-to-r from-primary/50 to-accent/50 rounded-full" />
+              <svg className="h-3 w-3 text-muted-foreground/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+              <div className="w-6 sm:w-10 h-[2px] bg-gradient-to-r from-accent/50 to-accent/30 rounded-full" />
+            </div>
+            <div className="flex items-center gap-1.5">
+              <div className="h-2.5 w-2.5 rounded-full bg-accent" />
+              <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">RS</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="relative mx-auto max-w-2xl px-3 sm:px-4 py-6 sm:py-10">
