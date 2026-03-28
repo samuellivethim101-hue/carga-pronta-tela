@@ -30,7 +30,7 @@ const Index = () => {
         <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-primary/[0.02] blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-2xl px-4 py-8 sm:py-10">
+      <div className="relative mx-auto max-w-2xl px-3 sm:px-4 py-6 sm:py-10">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2.5 mb-2">
