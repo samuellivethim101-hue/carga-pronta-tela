@@ -21,18 +21,31 @@ const Index = () => {
   const [dateFrom, setDateFrom] = useState<Date | undefined>(new Date());
   const [dateTo, setDateTo] = useState<Date | undefined>(new Date());
 
+  const [showStickyBar, setShowStickyBar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowStickyBar(window.scrollY > 280);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative min-h-screen bg-background overflow-x-hidden">
+    <div className="relative min-h-screen bg-background">
       {/* Atmospheric background elements */}
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full bg-primary/[0.04] blur-3xl" />
         <div className="absolute top-1/3 -left-40 h-[400px] w-[400px] rounded-full bg-accent/[0.03] blur-3xl" />
         <div className="absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-primary/[0.02] blur-3xl" />
       </div>
 
-      {/* Sticky floating bar: Origem + Destino */}
-      <div className="sticky top-0 z-50">
-        <div className="glass-surface border-b border-border/40 px-3 sm:px-4 py-2.5 backdrop-blur-xl bg-background/80">
+      {/* Fixed floating bar: Origem + Destino */}
+      <div className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
+        showStickyBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+      )}>
+        <div className="border-b border-border/40 px-3 sm:px-4 py-2.5 backdrop-blur-xl bg-background/80 shadow-sm">
           <div className="mx-auto max-w-2xl flex items-center justify-center gap-3">
             <div className="flex items-center gap-1.5">
               <div className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-card" />
