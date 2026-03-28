@@ -42,23 +42,41 @@ const Index = () => {
 
       {/* Fixed floating bar: Origem + Destino */}
       <div className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
         showStickyBar ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
       )}>
-        <div className="border-b border-border/40 px-3 sm:px-4 py-2.5 backdrop-blur-xl bg-background/80 shadow-sm">
-          <div className="mx-auto max-w-2xl flex items-center justify-center gap-3">
-            <div className="flex items-center gap-1.5">
-              <div className="h-2.5 w-2.5 rounded-full border-2 border-primary bg-card" />
-              <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">SP</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <div className="w-6 sm:w-10 h-[2px] bg-gradient-to-r from-primary/50 to-accent/50 rounded-full" />
-              <svg className="h-3 w-3 text-muted-foreground/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-              <div className="w-6 sm:w-10 h-[2px] bg-gradient-to-r from-accent/50 to-accent/30 rounded-full" />
-            </div>
-            <div className="flex items-center gap-1.5">
-              <div className="h-2.5 w-2.5 rounded-full bg-accent" />
-              <span className="text-xs sm:text-sm font-extrabold text-foreground tracking-tight">RS</span>
+        <div className="border-b border-primary/10 px-3 sm:px-4 py-3 backdrop-blur-2xl bg-background/70 shadow-[0_4px_30px_-4px_hsl(var(--primary)/0.1)]">
+          <div className="mx-auto max-w-2xl flex items-center justify-center">
+            <div className="flex items-center gap-2.5 sm:gap-4 bg-card/80 border border-border/50 rounded-2xl px-5 sm:px-8 py-2.5 shadow-sm">
+              {/* Origem */}
+              <div className="flex items-center gap-2">
+                <div className="relative">
+                  <div className="h-3 w-3 rounded-full border-[2.5px] border-primary bg-card" />
+                  <div className="absolute inset-0 h-3 w-3 rounded-full border-2 border-primary/30 animate-ping" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground font-bold leading-none">Origem</span>
+                  <span className="text-sm sm:text-base font-extrabold text-foreground tracking-tight leading-tight">SP</span>
+                </div>
+              </div>
+
+              {/* Route line */}
+              <div className="flex items-center gap-1 px-1 sm:px-2">
+                <div className="w-4 sm:w-8 h-[2px] rounded-full bg-gradient-to-r from-primary/60 to-primary/30" />
+                <div className="flex items-center justify-center h-6 w-6 rounded-full bg-primary/10 border border-primary/20">
+                  <Truck className="h-3 w-3 text-primary" />
+                </div>
+                <div className="w-4 sm:w-8 h-[2px] rounded-full bg-gradient-to-r from-accent/30 to-accent/60" />
+              </div>
+
+              {/* Destino */}
+              <div className="flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-accent shadow-[0_0_8px_hsl(var(--accent)/0.4)]" />
+                <div className="flex flex-col">
+                  <span className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground font-bold leading-none">Destino</span>
+                  <span className="text-sm sm:text-base font-extrabold text-foreground tracking-tight leading-tight">RS</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
